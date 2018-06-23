@@ -1,0 +1,3 @@
+// Posts
+export const FETCH_POSTS_BEGIN = "FETCH_POSTS_BEGIN";
+export const FETCH_POSTS_END = "FETCH_POSTS_END";
