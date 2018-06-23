@@ -10,14 +10,16 @@ import {
 
 import AuthScreen from './components/screens/AuthScreen';
 import GroupScreen from './components/screens/GroupScreen';
+import AuthLoadingScreen from './components/screens/AuthLoadingScreen';
 
 const App = SwitchNavigator(
     {
+        AuthLoadingScreen: {screen: AuthLoadingScreen},
         AuthScreen: {screen: AuthScreen},
         GroupScreen: {screen: GroupScreen},
     },
     {
-        initialRouteName: 'GroupScreen',
+        initialRouteName: 'AuthLoadingScreen',
     }
 );
 
