@@ -12,7 +12,7 @@ class Post extends PureComponent {
 
     renderHeader() {
         const OpenedImageProfile = () => (
-            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ProfileScreen')}}>
+            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ProfileScreen', {user: this.props.post.user})}}>
                 <Image
                     source={{uri: 'https://specials-images.forbesimg.com/imageserve/5a8d90fd4bbe6f2652f61c15/416x416.jpg?background=000000&cropX1=0&cropX2=1999&cropY1=159&cropY2=2159'}}
                     resizeMode={Image.resizeMode.cover}
