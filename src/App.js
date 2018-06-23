@@ -3,11 +3,13 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+import React from 'react';
 import {
     SwitchNavigator,
     StackNavigator,
 } from 'react-navigation';
+import {Provider} from 'react-redux';
+import createStore from './redux/createStore';
 
 import AuthScreen from './components/screens/AuthScreen';
 import GroupScreen from './components/screens/GroupScreen';
@@ -63,4 +65,12 @@ const App = SwitchNavigator(
     }
 );
 
-export default App;
+const store = createStore();
+
+const AppWithStore = () => (
+    <Provider store={store}>
+        <App/>
+    </Provider>
+);
+
+export default AppWithStore;

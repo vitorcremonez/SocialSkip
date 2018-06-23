@@ -6,6 +6,7 @@ import {
     Image,
 } from 'react-native';
 import Card from './common/Card';
+import Attachments from "./Attachments";
 
 class Post extends PureComponent {
 
@@ -26,9 +27,9 @@ class Post extends PureComponent {
         );
 
         const OpenedName = () => (
-            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ProfileScreen')}}>
+            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ProfileScreen', {user: this.props.post.user})}}>
                 <Text style={styles.nameLink}>
-                    { 'Vitor Cremonez' }
+                    {this.props.post.user.first_name + ' ' + this.props.post.user.last_name}
                 </Text>
             </TouchableOpacity>
         );
@@ -66,10 +67,18 @@ class Post extends PureComponent {
         return (
             <TouchableOpacity onPress={() => {this.props.navigation.navigate('PostScreen', {post: this.props.post})}}>
                 <Text style={{fontSize: 18}}>
-                    Lorem Ipsum Dolor...
+                    { this.props.post.body }
                 </Text>
             </TouchableOpacity>
         );
+    }
+
+    renderEmbed() {
+        if (this.props.post.attachments && this.props.post.attachments.length > 0) {
+            return (
+                <Attachments attachments={this.props.post.attachments}/>
+            );
+        }
     }
 
     renderToolbar() {
@@ -117,6 +126,7 @@ class Post extends PureComponent {
             <Card>
                 { this.renderHeader() }
                 { this.renderBody() }
+                { this.renderEmbed() }
                 { this.renderToolbar() }
             </Card>
         );
