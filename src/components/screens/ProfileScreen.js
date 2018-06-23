@@ -10,9 +10,11 @@ class ProfileScreen extends PureComponent {
     };
 
     render() {
+        const {user} = this.props.navigation.state.params;
+        console.log(user);
         return (
             <View>
-                <Text>Hello Profile!</Text>
+                <Text>{`${user.first_name} ${user.last_name}`}</Text>
             </View>
         );
     }

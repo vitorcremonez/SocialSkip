@@ -27,9 +27,9 @@ class Post extends PureComponent {
         );
 
         const OpenedName = () => (
-            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ProfileScreen')}}>
+            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ProfileScreen', {user: this.props.post.user})}}>
                 <Text style={styles.nameLink}>
-                    { 'Vitor Cremonez' }
+                    {this.props.post.user.first_name + ' ' + this.props.post.user.last_name}
                 </Text>
             </TouchableOpacity>
         );
