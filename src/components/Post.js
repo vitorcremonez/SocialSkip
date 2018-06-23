@@ -66,7 +66,7 @@ class Post extends PureComponent {
         return (
             <TouchableOpacity onPress={() => {this.props.navigation.navigate('PostScreen', {post: this.props.post})}}>
                 <Text style={{fontSize: 18}}>
-                    Lorem Ipsum Dolor...
+                    { this.props.post.body }
                 </Text>
             </TouchableOpacity>
         );

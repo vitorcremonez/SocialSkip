@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Post from '../components/Post';
 import Spacer from './common/Spacer';
+import MeetUPaginator from '../services/MeetUPaginator';
 
 class PostList extends Component {
     constructor(props) {
@@ -19,6 +20,37 @@ class PostList extends Component {
             isFetchingPrevPosts: false,
             isFetchingNextPosts: false,
         };
+        this.paginator = new MeetUPaginator();
+    }
+
+    componentDidMount() {
+        this.fetchNextPosts();
+    }
+
+    fetchNextPosts() {
+        if (!this.state.isFetchingPrevPosts && !this.state.isFetchingNextPosts) {
+            this.setState({isFetchingNextPosts: true});
+
+            let data = {
+                object_model: 'Groups',//this.props.objectModel,
+                object_id: 1, //this.props.objectId,
+            };
+
+            this.props.fetchNextPosts(
+                data,
+                this.paginator.getNextPage(),
+                (response) => {
+                    this.paginator.refreshNextPage(response.data.pagination);
+                    this.setState({isFetchingNextPosts: false});
+                },
+                (error) => {
+                    alert('erro');
+                    console.error('xxxxxxxx', error);
+                    this.props.navigation.navigate('NetworkErrorModal');
+                    this.setState({isFetchingNextPosts: false});
+                }
+            );
+        }
     }
 
     renderHeaderComponent() {
@@ -36,10 +68,24 @@ class PostList extends Component {
         if (this.props.ListFooterComponent) {
             return (
                 <View>
-                    <Text>footer flatlist</Text>
+                    {this.renderFetchButton()}
                     {this.props.ListFooterComponent()}
                 </View>
             );
+        } else {
+            return (
+                <View>
+                    {this.renderFetchButton()}
+                </View>
+            );
+        }
+    };
+
+    renderFetchButton() {
+        if (this.state.isFetchingNextPosts) {
+            return <ActivityIndicator size="large" style={{margin: 10}}/>;
+        } else {
+            return <Button onPress={() => this.fetchNextPosts()} title={"+ Posts"}/>;
         }
     };
 
@@ -52,7 +98,7 @@ class PostList extends Component {
         );
     };
     _keyExtractor = (item, index) => {
-        return item.toString();
+        return item.id.toString();
     };
     _itemSeparatorComponent = () => {
         return <Spacer/>;

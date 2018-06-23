@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import PostList from '../components/PostList';
+import {
+    fetchPrevPosts,
+    fetchNextPosts,
+} from '../actions/PostActions';
 
 class PostListContainer extends React.PureComponent {
     render() {
@@ -36,5 +40,5 @@ PostListContainer.defaultProps = {
     postCreatorTitle: '',
 };
 
-export default connect(mapStateToProps, null)(PostListContainer);
+export default connect(mapStateToProps, {fetchPrevPosts, fetchNextPosts})(PostListContainer);
 
