@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Post from "../Post";
 import Logo from '../../assets/images/logo-white.png';
+import PostListContainer from '../../containers/PostListContainer';
 
 class GroupScreen extends Component {
     static navigationOptions = {
@@ -23,14 +24,13 @@ class GroupScreen extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <View>
                 <StatusBar barStyle="light-content"/>
 
-                <Post navigation={this.props.navigation}/>
-                <Post navigation={this.props.navigation}/>
-                <Post navigation={this.props.navigation}/>
-                <Post navigation={this.props.navigation}/>
-            </ScrollView>
+                <PostListContainer
+                    navigation={this.props.navigation}
+                />
+            </View>
         );
     }
 }
