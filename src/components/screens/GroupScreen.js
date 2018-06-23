@@ -10,6 +10,8 @@ import {
 import Post from "../Post";
 import Logo from '../../assets/images/logo-white.png';
 import PostListContainer from '../../containers/PostListContainer';
+import Outdoor from '../Outdoor';
+import Spacer from '../common/Spacer';
 
 class GroupScreen extends Component {
     static navigationOptions = {
@@ -28,6 +30,14 @@ class GroupScreen extends Component {
                 <StatusBar barStyle="light-content"/>
 
                 <PostListContainer
+                    ListHeaderComponent={() => (
+                        <View>
+                            <Outdoor/>
+                            <Spacer/>
+                        </View>
+                    )}
+                    objectModel={'Groups'}
+                    objectId={1}
                     navigation={this.props.navigation}
                 />
             </View>

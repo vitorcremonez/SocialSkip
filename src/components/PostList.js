@@ -32,8 +32,8 @@ class PostList extends Component {
             this.setState({isFetchingNextPosts: true});
 
             let data = {
-                object_model: 'Groups',//this.props.objectModel,
-                object_id: 1, //this.props.objectId,
+                object_model: this.props.objectModel,
+                object_id: this.props.objectId,
             };
 
             this.props.fetchNextPosts(
@@ -45,7 +45,6 @@ class PostList extends Component {
                 },
                 (error) => {
                     alert('erro');
-                    console.error('xxxxxxxx', error);
                     this.props.navigation.navigate('NetworkErrorModal');
                     this.setState({isFetchingNextPosts: false});
                 }
@@ -58,7 +57,6 @@ class PostList extends Component {
             return (
                 <View>
                     {this.props.ListHeaderComponent()}
-                    <Text>header flatlist</Text>
                 </View>
             );
         }
@@ -67,14 +65,14 @@ class PostList extends Component {
     renderFooterComponent() {
         if (this.props.ListFooterComponent) {
             return (
-                <View>
+                <View style={{padding: 16}}>
                     {this.renderFetchButton()}
                     {this.props.ListFooterComponent()}
                 </View>
             );
         } else {
             return (
-                <View>
+                <View style={{padding: 16}}>
                     {this.renderFetchButton()}
                 </View>
             );
@@ -85,7 +83,13 @@ class PostList extends Component {
         if (this.state.isFetchingNextPosts) {
             return <ActivityIndicator size="large" style={{margin: 10}}/>;
         } else {
-            return <Button onPress={() => this.fetchNextPosts()} title={"+ Posts"}/>;
+            return (
+                <Button
+                    onPress={() => this.fetchNextPosts()}
+                    title={"+ Posts"}
+                    color={'tomato'}
+                />
+            );
         }
     };
 

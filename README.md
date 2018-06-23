@@ -1,4 +1,4 @@
-#SocialSkip
+# SocialSkip
 
 Social Skip is a react native application for SkipTheDishes team post and receive feedback about new ideas.
 

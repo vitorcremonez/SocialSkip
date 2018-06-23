@@ -6,6 +6,7 @@ import {
     Image,
 } from 'react-native';
 import Card from './common/Card';
+import Attachments from "./Attachments";
 
 class Post extends PureComponent {
 
@@ -72,6 +73,14 @@ class Post extends PureComponent {
         );
     }
 
+    renderEmbed() {
+        if (this.props.post.attachments && this.props.post.attachments.length > 0) {
+            return (
+                <Attachments attachments={this.props.post.attachments}/>
+            );
+        }
+    }
+
     renderToolbar() {
         const LikeButton = () => (
             <View style={styles.menuButton}>
@@ -117,6 +126,7 @@ class Post extends PureComponent {
             <Card>
                 { this.renderHeader() }
                 { this.renderBody() }
+                { this.renderEmbed() }
                 { this.renderToolbar() }
             </Card>
         );
