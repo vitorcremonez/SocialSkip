@@ -6,11 +6,15 @@ Create your profile to the social network and start to share your ideias with sk
 
 SocialSkip uses react-native FlatList and a bunch of techniques to improve performance and handle thousands of posts in a same screen. Navigate between screens and feel how fluid the app is.
 
-ScreenShot of sign in screen:
+##### ScreenShot of sign in screen:
 <img src="https://i.imgur.com/eETNuWJ.png"/>
 
-ScreenShot of group screen:
+##### ScreenShot of group screen:
 <img src="https://i.imgur.com/AdRq3fO.png"/>
+
+##### SocialSkip
+<img src="https://media.giphy.com/media/dJsmxuKw5xLRtPdzBH/giphy.gif"/>
+
 
 
 ## Instructions
