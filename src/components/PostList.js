@@ -27,6 +27,30 @@ class PostList extends Component {
         this.fetchNextPosts();
     }
 
+    fetchPrevPosts() {
+        if (!this.state.isFetchingPrevPosts && !this.state.isFetchingNextPosts) {
+            this.setState({isFetchingPrevPosts: true});
+
+            let data = {
+                object_model: this.props.objectModel,
+                object_id: this.props.objectId,
+            };
+
+            this.props.fetchPrevPosts(
+                data,
+                this.paginator.getPrevPage(),
+                (response) => {
+                    this.paginator.refreshPrevPage(response.data.pagination);
+                    this.setState({isFetchingPrevPosts: false});
+                },
+                () => {
+                    this.props.navigation.navigate('NetworkErrorModal');
+                    this.setState({isFetchingPrevPosts: false});
+                }
+            );
+        }
+    }
+
     fetchNextPosts() {
         if (!this.state.isFetchingPrevPosts && !this.state.isFetchingNextPosts) {
             this.setState({isFetchingNextPosts: true});
@@ -124,7 +148,7 @@ class PostList extends Component {
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.isFetchingPrevPosts}
-                        onRefresh={() => this.setState({isFetchingPrevPosts: false})}
+                        onRefresh={() => this.fetchPrevPosts()}
                     />
                 }
             />
