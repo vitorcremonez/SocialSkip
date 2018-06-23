@@ -21,6 +21,10 @@ class AuthScreen extends Component {
         };
     }
 
+    signIn() {
+        this.props.navigation.navigate('AppStack');
+    }
+
     render() {
         return (
             <View style={{backgroundColor: '#E91431', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -51,7 +55,7 @@ class AuthScreen extends Component {
                         <Button
                             title={'Sign In'}
                             color={'white'}
-                            onPress={() => alert('sign in')}
+                            onPress={() => this.signIn()}
                         />
                     </View>
 
