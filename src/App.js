@@ -4,20 +4,21 @@
  * @flow
  */
 
-import React, { Component } from 'react';
 import {
-  Text,
-  View
-} from 'react-native';
+    SwitchNavigator,
+} from 'react-navigation';
 
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={{padding: 100}}>
-        <Text>
-          Hello World
-        </Text>
-      </View>
-    );
-  }
-}
+import AuthScreen from './components/screens/AuthScreen';
+import GroupScreen from './components/screens/GroupScreen';
+
+const App = SwitchNavigator(
+    {
+        AuthScreen: {screen: AuthScreen},
+        GroupScreen: {screen: GroupScreen},
+    },
+    {
+        initialRouteName: 'GroupScreen',
+    }
+);
+
+export default App;
