@@ -3,14 +3,22 @@ import {
     View,
     Text,
     Button,
+    Image,
     ScrollView,
     StatusBar,
 } from 'react-native';
 import Post from "../Post";
+import Logo from '../../assets/images/logo-white.png';
 
 class GroupScreen extends Component {
     static navigationOptions = {
-        headerTitle: 'SocialSkip',
+        headerTitle: (
+            <Image
+                source={Logo}
+                style={{width: 150, height: 24}}
+                resizeMode={Image.resizeMode.contain}
+            />
+        ),
     };
 
     render() {

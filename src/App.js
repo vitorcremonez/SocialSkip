@@ -27,8 +27,6 @@ const navigationOptions = ({navigation}) => {
             borderBottomWidth: 0,
         },
         headerTintColor: '#FFFFFF',
-        //headerLeft: () => <HeaderBackButton notificationsQuantity={3} navigation={navigation}/>,
-        headerTitle: (navigation.state.routeName === "FeedScreen") ? () => <AppShell navigation={navigation}/> : null,
     };
 };
 
